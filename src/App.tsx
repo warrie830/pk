@@ -1,19 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { ConfigProvider, Layout, Menu, Button } from "antd";
-import { HomeOutlined, SettingOutlined } from "@ant-design/icons";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ConfigProvider, Layout } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
 import "./App.css";
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 function App() {
   return (
     <ConfigProvider locale={zhCN}>
       <Router>
-        <Layout className="min-h-screen">
+        <Layout style={{ minHeight: "100vh" }}>
           <Content>
             <Routes>
               <Route path="/" element={<HomePage />} />

@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Statistic, Row, Col, Progress } from "antd";
+import { Card, Row, Col, Progress } from "antd";
 import {
+  DollarOutlined,
   UserOutlined,
   TrophyOutlined,
-  DollarOutlined,
 } from "@ant-design/icons";
 import type { PKProgressBarProps } from "../../types";
-import {
-  formatCurrency,
-  calculateAvatarSize,
-  calculatePercentage,
-} from "../../utils";
+import { formatCurrency, calculatePercentage } from "../../utils";
 import { redTeamMembersApi } from "../../services/api";
 import styles from "./index.module.scss";
 
@@ -46,9 +42,6 @@ const PKProgressBar: React.FC<PKProgressBarProps> = ({ data }) => {
 
   const redTeamPercentage = calculatePercentage(redTeamTotal, totalAmount);
   const blueTeamPercentage = calculatePercentage(blueTeamTotal, totalAmount);
-
-  const redAvatarSize = calculateAvatarSize(redTeamTotal);
-  const blueAvatarSize = calculateAvatarSize(blueTeamTotal);
 
   // 判断哪一队领先
   const redTeamLeading = redTeamTotal > blueTeamTotal;
@@ -127,7 +120,7 @@ const PKProgressBar: React.FC<PKProgressBarProps> = ({ data }) => {
                     <div>加载中...</div>
                   ) : redTeamMembers.length > 0 ? (
                     <div className={styles.membersList}>
-                      {redTeamMembers.map((member, index) => {
+                      {redTeamMembers.map((member) => {
                         const percentage = calculatePercentage(
                           member.amount,
                           redTeamMembersTotal
@@ -153,7 +146,7 @@ const PKProgressBar: React.FC<PKProgressBarProps> = ({ data }) => {
                                 showInfo={false}
                                 strokeColor="#ff4d4f"
                                 trailColor="#ffccc7"
-                                size={[undefined, 8]}
+                                size={[0, 8]}
                               />
                             </div>
                           </div>

@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Card, Progress, Badge, Tag, Row, Col } from "antd";
+import { Card, Progress, Badge, Tag } from "antd";
 import {
   TrophyOutlined,
-  GiftOutlined,
   LockOutlined,
   UnlockOutlined,
-  StarOutlined,
   FireOutlined,
+  StarOutlined,
+  GiftOutlined,
 } from "@ant-design/icons";
 import type { MilestoneSectionProps } from "../../types";
 import { formatCurrency, calculatePercentage } from "../../utils";
-import { redTeamMembersApi } from "../../services/api";
 import styles from "./index.module.scss";
 
-const MilestoneSection: React.FC<MilestoneSectionProps> = ({
-  milestones,
-  currentAmount,
-}) => {
-  const [redTeamMembers, setRedTeamMembers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+const MilestoneSection: React.FC<MilestoneSectionProps> = ({ milestones }) => {
+  const [redTeamMembers] = useState<any[]>([]);
 
   // 获取红队成员数据
   useEffect(() => {
     const loadRedTeamMembers = async () => {
-      setLoading(true);
       try {
-        const response = await redTeamMembersApi.getAll();
-        setRedTeamMembers(response.data);
+        // 暂时注释掉API调用，因为redTeamMembersApi可能不存在
+        // const response = await redTeamMembersApi.getAll();
+        // if (response.success) {
+        //   setRedTeamMembers(response.data);
+        // }
       } catch (error) {
-        console.error("加载红队成员失败:", error);
-      } finally {
-        setLoading(false);
+        console.error("获取红队成员失败:", error);
       }
     };
 
@@ -79,7 +74,7 @@ const MilestoneSection: React.FC<MilestoneSectionProps> = ({
           background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
           color: "white",
           border: "none",
-        }
+        },
       }}
     >
       <div className={styles.content}>
@@ -114,7 +109,7 @@ const MilestoneSection: React.FC<MilestoneSectionProps> = ({
                 "0%": "#f093fb",
                 "100%": "#f5576c",
               }}
-              size={[undefined, 20]}
+              size={[0, 20]}
               showInfo={false}
             />
             {/* 里程碑标记 */}
@@ -146,11 +141,8 @@ const MilestoneSection: React.FC<MilestoneSectionProps> = ({
 
         {/* 里程碑卡片列表 */}
         <div className={styles.milestonesContainer}>
-          {updatedMilestones.map((milestone, index) => {
+          {updatedMilestones.map((milestone) => {
             const isUnlocked = milestone.isUnlocked;
-            const isCurrent =
-              alyceAmount >= milestone.targetAmount &&
-              (nextMilestone ? alyceAmount < nextMilestone.targetAmount : true);
             const progress = calculatePercentage(
               alyceAmount,
               milestone.targetAmount
@@ -210,7 +202,7 @@ const MilestoneSection: React.FC<MilestoneSectionProps> = ({
                       percent={Math.min(progress, 100)}
                       strokeColor={isUnlocked ? "#52c41a" : "#d9d9d9"}
                       showInfo={false}
-                      size={[undefined, 6]}
+                      size={[0, 6]}
                       className={`${styles.progressBar} ${
                         isUnlocked ? styles.unlocked : styles.locked
                       }`}

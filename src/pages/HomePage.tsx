@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { Layout, Typography, Spin } from "antd";
+import { Layout, Spin } from "antd";
 import {
   usePKProgress,
   useMilestones,
   useLottery,
-  useFlagProgress,
   useLeaderboard,
 } from "../hooks/useData";
 import PKProgressBar from "../components/PKProgressBar";
@@ -14,12 +13,9 @@ import FlagProgressSection from "../components/FlagProgressSection";
 import LeaderboardSection from "../components/LeaderboardSection";
 import styles from "./HomePage.module.scss";
 
-const { Header, Content } = Layout;
-const { Title } = Typography;
+const { Content } = Layout;
 
 const HomePage: React.FC = () => {
-  const [lastUpdateTime, setLastUpdateTime] = useState<Date>(new Date());
-  const [refreshCount, setRefreshCount] = useState(0);
   const [showRefreshIndicator, setShowRefreshIndicator] = useState(false);
 
   const {
@@ -58,7 +54,7 @@ const HomePage: React.FC = () => {
     try {
       await spin();
       // 抽奖后刷新相关数据
-      refetchRecords(false);
+      refetchRecords();
     } catch (error) {
       console.error("抽奖失败:", error);
     }
@@ -67,7 +63,6 @@ const HomePage: React.FC = () => {
   // 优化的数据刷新函数 - 减少视觉闪烁
   const refreshData = useCallback(async () => {
     // 使用计数器而不是布尔值来避免状态频繁切换
-    setRefreshCount((prev) => prev + 1);
     setShowRefreshIndicator(true);
 
     try {
@@ -76,10 +71,9 @@ const HomePage: React.FC = () => {
         refetchPK(false),
         refetchMilestones(false),
         refetchPrizes(false),
-        refetchRecords(false),
+        refetchRecords(),
         refetchLeaderboard(false),
       ]);
-      setLastUpdateTime(new Date());
     } catch (error) {
       console.error("数据刷新失败:", error);
     }

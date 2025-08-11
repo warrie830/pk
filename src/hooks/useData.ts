@@ -189,7 +189,7 @@ export function useLottery() {
     }
   }, []);
 
-  const fetchRecords = useCallback(async (showLoading = true) => {
+  const fetchRecords = useCallback(async () => {
     try {
       const response = await lotteryApi.getRecords();
       if (response.success) {
@@ -263,7 +263,7 @@ export function useLottery() {
     const initializeData = async () => {
       setLoading(true);
       try {
-        await Promise.all([fetchPrizes(false), fetchRecords(false)]);
+        await Promise.all([fetchPrizes(false), fetchRecords()]);
         isInitialized.current = true;
       } catch (error) {
         console.error("初始化数据失败:", error);

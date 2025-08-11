@@ -1,27 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Button,
-  List,
-  Avatar,
-  Badge,
-  Row,
-  Col,
-  Spin,
-  message,
-} from "antd";
+import { Card, Button, List, Avatar, Badge, Row, Col } from "antd";
 import {
   GiftOutlined,
-  RotateLeftOutlined,
-  TrophyOutlined,
   StarOutlined,
-  FireOutlined,
-  ClockCircleOutlined,
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
 import type { LotterySectionProps } from "../../types";
-import { formatTime, getRelativeTime } from "../../utils";
+import { getRelativeTime } from "../../utils";
 import styles from "./index.module.scss";
 
 const LotterySection: React.FC<LotterySectionProps> = ({ prizes, records }) => {
@@ -165,7 +151,7 @@ const LotterySection: React.FC<LotterySectionProps> = ({ prizes, records }) => {
                         }
                         description={
                           <div className={styles.recordDescription}>
-                            <ClockCircleOutlined />
+                            {/* <ClockCircleOutlined /> */}
                             {getRelativeTime(record.timestamp)}
                           </div>
                         }

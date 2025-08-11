@@ -7,20 +7,16 @@ import {
   Col,
   Tag,
   Avatar,
-  List,
-  Button,
   Spin,
   message,
 } from "antd";
 import {
   FlagOutlined,
   CheckCircleOutlined,
-  ClockCircleOutlined,
   UserOutlined,
   TrophyOutlined,
   FireOutlined,
   StarOutlined,
-  LinkOutlined,
 } from "@ant-design/icons";
 import type { FlagProgress } from "../../types";
 import { formatCurrency, calculatePercentage } from "../../utils";
@@ -158,7 +154,7 @@ const FlagProgressSection: React.FC = () => {
               percent={progressPercent}
               strokeColor={isCompleted ? "#52c41a" : "#1890ff"}
               showInfo={false}
-              size={[undefined, 8]}
+              size={[0, 8]}
               className={`${styles.progressBar} ${
                 isCompleted ? styles.completed : styles.active
               }`}
@@ -242,7 +238,7 @@ const FlagProgressSection: React.FC = () => {
           background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           color: "white",
           border: "none",
-        }
+        },
       }}
       // 移除切换按钮，因为已完成的插旗现在总是显示
     >

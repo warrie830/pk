@@ -2,20 +2,17 @@ import React from "react";
 import { Card, List, Avatar, Badge, Row, Col, Tag } from "antd";
 import {
   TrophyOutlined,
-  CrownOutlined,
   UserOutlined,
+  CrownOutlined,
   StarOutlined,
   FireOutlined,
-  HeartOutlined,
 } from "@ant-design/icons";
 import type { LeaderboardSectionProps } from "../../types";
 import { formatCurrency } from "../../utils";
 import styles from "./index.module.scss";
 
 const LeaderboardSection: React.FC<LeaderboardSectionProps> = ({ users }) => {
-  // 计算统计数据
   const totalUsers = users.length;
-  const roseGroupUsers = users.filter((user) => user.amount >= 1000).length;
   const averageAmount =
     users.length > 0
       ? users.reduce((sum, user) => sum + user.amount, 0) / users.length
@@ -53,7 +50,7 @@ const LeaderboardSection: React.FC<LeaderboardSectionProps> = ({ users }) => {
           background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
           color: "white",
           border: "none",
-        }
+        },
       }}
     >
       <div className={styles.content}>
