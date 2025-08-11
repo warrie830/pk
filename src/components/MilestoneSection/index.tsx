@@ -13,7 +13,10 @@ import { formatCurrency, calculatePercentage } from "../../utils";
 import styles from "./index.module.scss";
 
 const MilestoneSection: React.FC<MilestoneSectionProps> = ({ milestones }) => {
-  const [redTeamMembers] = useState<any[]>([]);
+  const [redTeamMembers] = useState<any[]>([
+    { id: "1", name: "Alyce", amount: 1500, memberCount: 86 },
+    { id: "2", name: "Ivy", amount: 9000, memberCount: 70 },
+  ]);
 
   // 获取红队成员数据
   useEffect(() => {

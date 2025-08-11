@@ -86,6 +86,27 @@ body {
   }
 }
 
+/* 确保 Antd Progress 组件能正确显示 */
+.ant-progress {
+  width: 100% !important;
+  display: block !important;
+}
+
+.ant-progress-outer {
+  width: 100% !important;
+  display: block !important;
+}
+
+.ant-progress-inner {
+  width: 100% !important;
+  display: block !important;
+}
+
+/* .ant-progress-bg {
+  height: 8px !important;
+  border-radius: 4px !important;
+} */
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

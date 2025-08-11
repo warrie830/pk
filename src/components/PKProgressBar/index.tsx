@@ -14,15 +14,29 @@ const PKProgressBar: React.FC<PKProgressBarProps> = ({ data }) => {
   const [redTeamMembers, setRedTeamMembers] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // 默认的红队成员数据
+  const defaultRedTeamMembers = [
+    { id: "1", name: "Alyce", amount: 1500, memberCount: 86 },
+    { id: "2", name: "Ivy", amount: 9000, memberCount: 70 },
+  ];
+
   // 获取红队成员数据
   useEffect(() => {
     const loadRedTeamMembers = async () => {
       setLoading(true);
       try {
         const response = await redTeamMembersApi.getAll();
-        setRedTeamMembers(response.data);
+        if (response.success && response.data.length > 0) {
+          setRedTeamMembers(response.data);
+        } else {
+          // 如果API返回空数据或失败，使用默认数据
+          console.warn("红队成员API返回空数据，使用默认数据");
+          setRedTeamMembers(defaultRedTeamMembers);
+        }
       } catch (error) {
-        console.error("加载红队成员失败:", error);
+        console.error("加载红队成员失败，使用默认数据:", error);
+        // API调用失败时使用默认数据
+        setRedTeamMembers(defaultRedTeamMembers);
       } finally {
         setLoading(false);
       }
@@ -147,7 +161,17 @@ const PKProgressBar: React.FC<PKProgressBarProps> = ({ data }) => {
                                 strokeColor="#ff4d4f"
                                 trailColor="#ffccc7"
                                 size={[0, 8]}
+                                style={{ marginTop: "8px" }}
                               />
+                              <div
+                                style={{
+                                  fontSize: "12px",
+                                  color: "#666",
+                                  marginTop: "4px",
+                                }}
+                              >
+                                占比: {percentage}%
+                              </div>
                             </div>
                           </div>
                         );
