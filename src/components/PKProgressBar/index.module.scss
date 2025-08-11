@@ -1,0 +1,593 @@
+// PK对战条组件样式
+.pkContainer {
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.card {
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.cardHead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 16px 16px 0 0 !important;
+  padding: 20px 24px 0 !important;
+}
+
+.cardBody {
+  padding: 20px 24px 24px !important;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// 队伍信息区域
+.teamInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &.leading {
+    animation: pulseSlow 3s infinite;
+  }
+}
+
+.teamAvatar {
+  position: relative;
+
+  &.leading {
+    animation: bounceSlow 2s infinite;
+  }
+}
+
+.avatar {
+  &.redTeam {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+
+    &.leading {
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3) !important;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+  }
+
+  &.blueTeam {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+
+    &.leading {
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3) !important;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+  }
+}
+
+.trophyIcon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: #f59e0b;
+  font-size: 1.125rem;
+  animation: pulse 2s infinite;
+}
+
+.teamInfo {
+  text-align: center;
+}
+
+.teamName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+
+  &.redTeam {
+    color: #dc2626;
+  }
+
+  &.blueTeam {
+    color: #2563eb;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+.teamAmount {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.teamDesc {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+// PK对战条
+.pkBarContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redAvatar {
+  width: 100px;
+  height: 100px;
+  // background-color: #ef4444;
+  border: 2px solid #ef4444;
+  border-radius: 50%;
+}
+
+.blueAvatar {
+  width: 100px;
+  height: 100px;
+  // background-color: #3b82f6;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+}
+
+.pkBar {
+  flex: 1;
+  position: relative;
+  height: 3rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.redSection {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transition: all 1s ease-out;
+  background: linear-gradient(to right, #f87171, #ef4444, #dc2626);
+
+  &.leading {
+    background: linear-gradient(to right, #f87171, #ef4444, #dc2626);
+  }
+
+  &.notLeading {
+    background: linear-gradient(to right, #fca5a5, #f87171);
+  }
+}
+
+.blueSection {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  transition: all 1s ease-out;
+  background: linear-gradient(to left, #60a5fa, #3b82f6, #2563eb);
+
+  &.leading {
+    background: linear-gradient(to left, #60a5fa, #3b82f6, #2563eb);
+  }
+
+  &.notLeading {
+    background: linear-gradient(to left, #93c5fd, #60a5fa);
+  }
+}
+
+.numberDisplay {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+  &.left {
+    left: 1rem;
+  }
+
+  &.right {
+    right: 1rem;
+  }
+}
+
+// 获胜奖杯
+.winnerTrophy {
+  position: absolute;
+  top: 0.5rem;
+  z-index: 15;
+
+  .redSection & {
+    left: 0.5rem;
+  }
+
+  .blueSection & {
+    right: 0.5rem;
+  }
+}
+
+.trophyIcon {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  animation: trophyBounce 1.5s ease-in-out infinite;
+}
+
+// 中央PK标志
+.pkCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.pkBall {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #3b82f6);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pkText {
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+// 圆形端点
+.endCap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  &.left {
+    left: 0;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  &.right {
+    right: 0;
+    transform: translateY(-50%) translateX(50%);
+  }
+}
+
+.endCapCircle {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  &.blue {
+    border: 4px solid #3b82f6;
+  }
+
+  &.red {
+    border: 4px solid #ef4444;
+  }
+}
+
+// 详细数据卡片
+.detailCards {
+  margin-top: 1.5rem;
+}
+
+.detailCard {
+  text-align: center;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  &.redTeam {
+    border: 1px solid #fecaca;
+    background: linear-gradient(135deg, #fef2f2, #fce7f3);
+
+    &.leading {
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &.blueTeam {
+    border: 1px solid #bfdbfe;
+    background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+
+    &.leading {
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.redTeam {
+    color: #dc2626;
+  }
+
+  &.blueTeam {
+    color: #2563eb;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
+}
+
+.trophyIconSmall {
+  margin-left: 0.5rem;
+  color: #f59e0b;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+.totalAmount {
+  font-weight: 700;
+
+  &.redTeam {
+    color: #dc2626;
+  }
+
+  &.blueTeam {
+    color: #2563eb;
+  }
+}
+
+// 总统计卡片
+.totalCard {
+  text-align: center;
+  background: linear-gradient(to right, #f3e8ff, #fce7f3);
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+}
+
+// 动画
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSlow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounceSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes trophyBounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+  75% {
+    transform: translateY(-6px) scale(1.08);
+  }
+}
+
+// 移动端适配
+@media (max-width: 768px) {
+  .cardHead {
+    padding: 16px 20px 0 !important;
+  }
+
+  .cardBody {
+    padding: 16px 20px 20px !important;
+  }
+
+  .team {
+    gap: 0.75rem;
+  }
+
+  .pkBar {
+    height: 2.5rem;
+  }
+
+  .numberDisplay {
+    font-size: 1rem;
+
+    &.left {
+      left: 0.75rem;
+    }
+
+    &.right {
+      right: 0.75rem;
+    }
+  }
+
+  .pkBall {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .pkText {
+    font-size: 0.625rem;
+  }
+
+  .endCapCircle {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// 红队成员展示样式
+.redCard {
+  border: 1px solid #fecaca !important;
+  background: linear-gradient(135deg, #fef2f2, #fce7f3) !important;
+
+  :global(.ant-card-head) {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    color: white !important;
+    border-bottom: 1px solid #fecaca !important;
+  }
+}
+
+.blueCard {
+  border: 1px solid #bfdbfe !important;
+  background: linear-gradient(135deg, #eff6ff, #e0f2fe) !important;
+
+  :global(.ant-card-head) {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    color: white !important;
+    border-bottom: 1px solid #bfdbfe !important;
+  }
+}
+
+.membersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.memberItem {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  }
+}
+
+.memberInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.memberName {
+  font-weight: 600;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.memberStats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.memberTotal {
+  font-weight: 600;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.memberBar {
+  width: 100%;
+}
+
+.noMembers {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.blueTeamInfo {
+  padding: 0.5rem;
+}
+
+.blueTeamStats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #2563eb;
+}
+
+.statIcon {
+  color: #3b82f6;
+  font-size: 1rem;
+}

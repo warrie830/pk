@@ -1,0 +1,540 @@
+// MilestoneSection 样式模块
+.milestoneCard {
+  // margin-bottom: 1.5rem;
+  // box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleIcon {
+  color: #fbbf24;
+  font-size: 1.25rem;
+}
+
+.titleText {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.badge {
+  margin-left: 0.5rem;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.progressSection {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.currentProgress {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #9333ea;
+  margin-bottom: 0.5rem;
+}
+
+.progressText {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.progressBar {
+  position: relative;
+
+  :global(.ant-progress-bg) {
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+  }
+}
+
+// 时间线容器
+.timelineContainer {
+  position: relative;
+  margin-top: 2rem;
+}
+
+// 时间线主线
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+// 里程碑标记点
+.milestoneMarkers {
+  position: relative;
+  z-index: 10;
+}
+
+.milestoneMarker {
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  width: 16px;
+  height: 16px;
+  background: #fbbf24;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  &.unlocked {
+    background: #22c55e;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  &.current {
+    background: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  &.locked {
+    background: #9ca3af;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// 连接线
+.connectionLine {
+  position: absolute;
+  background: #d1d5db;
+  z-index: 5;
+
+  &.horizontal {
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.vertical {
+    width: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.unlocked {
+    background: #22c55e;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.3);
+  }
+
+  &.current {
+    background: #3b82f6;
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.milestonesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.milestoneRow {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+
+    .milestoneCard {
+      text-align: right;
+    }
+
+    .connectionLine.horizontal {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+.milestonesContainer {
+  position: relative;
+  height: 300px;
+}
+
+.milestoneCard {
+  position: absolute;
+  // flex: 1;
+  max-width: 300px;
+  // position: relative;
+  z-index: 15;
+}
+
+.milestonePosition {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 2px;
+  background: #d1d5db;
+
+  .milestoneRow:nth-child(even) & {
+    right: 0;
+  }
+
+  .milestoneRow:nth-child(odd) & {
+    left: 0;
+  }
+
+  &.unlocked {
+    background: #22c55e;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.3);
+  }
+
+  &.current {
+    background: #3b82f6;
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.milestoneItem {
+  transition: all 0.3s ease;
+
+  &.unlocked {
+    border-color: #86efac;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.locked {
+    border-color: #e5e7eb;
+    background-color: #f9fafb;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.milestoneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.milestoneTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.milestoneIcon {
+  &.unlocked {
+    color: #22c55e;
+  }
+
+  &.locked {
+    color: #9ca3af;
+  }
+}
+
+.milestoneName {
+  font-weight: 700;
+
+  &.unlocked {
+    color: #16a34a;
+  }
+
+  &.locked {
+    color: #6b7280;
+  }
+}
+
+.milestoneAmount {
+  font-size: 0.75rem;
+}
+
+.milestoneContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.milestoneDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.progressContainer {
+  .progressLabel {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+
+  .progressBar {
+    :global(.ant-progress-bg) {
+      &.unlocked {
+        background-color: #52c41a;
+      }
+
+      &.locked {
+        background-color: #d9d9d9;
+      }
+    }
+  }
+}
+
+.rewardContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fefce8;
+  border-radius: 6px;
+  border: 1px solid #fde047;
+}
+
+.rewardIcon {
+  color: #f59e0b;
+}
+
+.rewardText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #a16207;
+}
+
+.statusContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+  &.unlocked {
+    color: #16a34a;
+  }
+
+  &.locked {
+    color: #6b7280;
+  }
+}
+
+.statusIcon {
+  font-size: 0.875rem;
+}
+
+.statusText {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.unlockEffect {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, #fde047, transparent);
+    opacity: 0.2;
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+.nextMilestoneCard {
+  text-align: center;
+  background: linear-gradient(90deg, #eff6ff 0%, #f3e8ff 100%);
+  border-color: #bfdbfe;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.nextMilestoneContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.nextMilestoneIcon {
+  color: #f97316;
+}
+
+.nextMilestoneText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1d4ed8;
+}
+
+.nextMilestoneAmount {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.mysteryCard {
+  text-align: center;
+  background: linear-gradient(90deg, #fdf2f8 0%, #fef2f2 100%);
+  border-color: #fbcfe8;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.mysteryContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.mysteryIcon {
+  color: #ec4899;
+}
+
+.mysteryText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #be185d;
+}
+
+.mysteryDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+// 动画
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 响应式设计
+@media (max-width: 640px) {
+  .content {
+    padding: 1rem;
+  }
+
+  .currentProgress {
+    font-size: 1.25rem;
+  }
+
+  .milestonesGrid {
+    gap: 0.75rem;
+  }
+
+  .milestoneItem {
+    .milestoneHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+}
+
+// 深色模式支持
+@media (prefers-color-scheme: dark) {
+  .milestoneCard {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .milestoneItem {
+    &.locked {
+      background-color: #111827;
+      border-color: #374151;
+    }
+  }
+
+  .milestoneDescription {
+    color: #9ca3af;
+  }
+
+  .nextMilestoneCard {
+    background: linear-gradient(90deg, #1e3a8a 0%, #581c87 100%);
+    border-color: #3b82f6;
+  }
+
+  .mysteryCard {
+    background: linear-gradient(90deg, #831843 0%, #991b1b 100%);
+    border-color: #ec4899;
+  }
+}

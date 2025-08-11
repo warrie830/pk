@@ -1,0 +1,663 @@
+// LotterySection 样式模块
+.lotteryCard {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleIcon {
+  color: #ec4899;
+  font-size: 1.25rem;
+}
+
+.titleText {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.badge {
+  margin-left: 0.5rem;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+// 左侧滚动表
+.recordsCard {
+  height: 24rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.recordsTitle {
+  font-weight: 600;
+  color: #374151;
+}
+
+.recordsCount {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.recordsList {
+  height: 20rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #94a3b8;
+    }
+  }
+}
+
+.recordItem {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: #f8fafc;
+    transform: translateX(2px);
+  }
+
+  &.latest {
+    background-color: #fef3c7;
+    border: 1px solid #f59e0b;
+    animation: slideIn 0.5s ease-out;
+  }
+}
+
+.recordAvatar {
+  &.special {
+    background-color: #f5222d;
+  }
+
+  &.normal {
+    background-color: #1890ff;
+  }
+}
+
+.recordTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.recordDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// 右侧轮播图
+.wheelCard {
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.carouselContainer {
+  position: relative;
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  height: 400px; // 固定高度
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:first-child {
+    left: -20px;
+  }
+
+  &:last-child {
+    right: -20px;
+  }
+}
+
+.customCarousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.carouselItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &.centerItem {
+    transform: scale(1) translateZ(0);
+    z-index: 3;
+    opacity: 1;
+
+    .prizeDisplay {
+      transform: scale(1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .prizeImageContainer {
+      height: 200px;
+    }
+
+    .prizeName {
+      font-size: 1.25rem;
+    }
+  }
+
+  &.sideItem {
+    transform: scale(0.7) translateZ(-100px);
+    z-index: 1;
+    opacity: 0.6;
+    filter: blur(1px);
+
+    .prizeDisplay {
+      transform: scale(0.8);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .prizeImageContainer {
+      height: 140px;
+    }
+
+    .prizeName {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      transform: scale(0.75) translateZ(-50px);
+      opacity: 0.8;
+      filter: blur(0.5px);
+    }
+  }
+}
+
+.prizeCarousel {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+
+  :global(.slick-slide) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.prizeDisplay {
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.prizeImageContainer {
+  margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.prizeImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.prizeImagePlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #9ca3af;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+}
+
+.placeholderIcon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+.prizeInfo {
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prizeName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.prizeDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.prizeProbability {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 0.5rem;
+}
+
+.specialBadge {
+  margin-top: 0.5rem;
+}
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.indicator {
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.activeIndicator {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    transform: scale(1.2);
+  }
+}
+
+.indicatorAvatar {
+  &.special {
+    background-color: #f5222d;
+  }
+
+  &.normal {
+    background-color: #1890ff;
+  }
+}
+
+// 当前展示奖品信息
+.currentPrizeInfo {
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 8px;
+  border: 1px solid #f59e0b;
+}
+
+.currentPrizeTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 0.5rem;
+}
+
+.currentPrizeDescription {
+  font-size: 0.875rem;
+  color: #a16207;
+  font-style: italic;
+}
+
+.rotationInfo {
+  font-size: 0.75rem;
+  color: #92400e;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// 奖品列表
+.prizesList {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.prizesTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.prizesContainer {
+  max-height: 8rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+}
+
+.prizeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #f3f4f6;
+    transform: translateX(2px);
+  }
+
+  &.activePrize {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+  }
+}
+
+.prizeInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prizeAvatar {
+  &.special {
+    background-color: #f5222d;
+  }
+
+  &.normal {
+    background-color: #1890ff;
+  }
+}
+
+.prizeName {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.prizeProbability {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+// 统计信息
+.statsRow {
+  margin-top: 1rem;
+}
+
+.statCard {
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &.total {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-color: #3b82f6;
+  }
+
+  &.special {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    border-color: #22c55e;
+  }
+
+  &.types {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+    border-color: #a855f7;
+  }
+}
+
+.statNumber {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+
+  &.total {
+    color: #1d4ed8;
+  }
+
+  &.special {
+    color: #16a34a;
+  }
+
+  &.types {
+    color: #7c3aed;
+  }
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+// 动画
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 响应式设计
+@media (max-width: 640px) {
+  .content {
+    padding: 1rem;
+  }
+
+  .wheelContainer {
+    width: 250px;
+    height: 250px;
+  }
+
+  .wheelItem {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.6rem;
+  }
+
+  .statNumber {
+    font-size: 1.25rem;
+  }
+}
+
+// 深色模式支持
+@media (prefers-color-scheme: dark) {
+  .lotteryCard {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .recordsCard,
+  .wheelCard {
+    background: #111827;
+    border-color: #374151;
+  }
+
+  .recordItem {
+    &:hover {
+      background-color: #1f2937;
+    }
+
+    &.latest {
+      background-color: #451a03;
+      border-color: #f59e0b;
+    }
+  }
+
+  .prizeItem {
+    background-color: #1f2937;
+
+    &:hover {
+      background-color: #374151;
+    }
+  }
+
+  .statCard {
+    &.total {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    }
+
+    &.special {
+      background: linear-gradient(135deg, #14532d 0%, #166534 100%);
+    }
+
+    &.types {
+      background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%);
+    }
+  }
+}
